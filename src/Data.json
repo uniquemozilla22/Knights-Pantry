@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "description": "Welcome to Knights Pantry",
+        "name": "The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways:",
+        "image": ""
+    },
+    {
+        "id": 2,
+        "description": "Here you Shop",
+        "name": "The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways:",
+        "image": ""
+    }
+]
