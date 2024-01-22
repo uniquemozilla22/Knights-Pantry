@@ -4,6 +4,7 @@ interface ISteps {
   id: number;
   description: string | undefined;
   name: string;
+  image: string;
 }
 
 export interface IStepContext {
@@ -22,10 +23,9 @@ export const StepContext = createContext<IStepContext>(defaultValue);
 
 const StepProviders = ({ children }: any) => {
   const [step, setStep] = useState<number>(0);
-
   const nextStep = () => {
-    setStep(step + 1)
-};
+    setStep(step + 1);
+  };
   const previousStep = () => setStep(step - 1);
 
   return (
