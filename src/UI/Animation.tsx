@@ -34,3 +34,23 @@ export const Slide: React.FC<IAnimation> = ({ children, delay, ...rest }) => {
     </animated.div>
   );
 };
+
+export const Popup: React.FC<IAnimation> = ({ children, delay, ...rest }) => {
+  const props = useSpring({
+    boxShadow: `0px 0px 0px 10px #623594`,
+    display: "flex",
+    from: {
+      boxShadow: `0px 0px 20px 10px #62359450`,
+    },
+    config: {
+      velocity: 5,
+    },
+    delay,
+  });
+
+  return (
+    <animated.div style={props} {...rest}>
+      {children}
+    </animated.div>
+  );
+};

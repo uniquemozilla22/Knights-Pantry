@@ -3,7 +3,7 @@ interface IStepContent {
   descriptions: string;
 }
 
-interface IStepData {
+export interface IStepData {
   id: number;
   title: string;
   image: string;
