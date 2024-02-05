@@ -2,10 +2,10 @@
 export default {
   content: ["./index.html",
   "./src/**/*.{js,ts,jsx,tsx}",],
-  theme: {
-    extend: {},
-  },
-  plugins: [import("daisyui")],
+  plugins: [require("daisyui")],
 
+  daisyui:{
+    themes:["dracula","winter"]
+  }
 }
 

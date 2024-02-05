@@ -3,16 +3,19 @@ import { animated, useSpring } from "@react-spring/web";
 interface IAnimation {
   children: string | JSX.Element | JSX.Element[];
   delay?: number;
+  className?: string;
+  reverse?: boolean;
 }
 
 export const Fade: React.FC<IAnimation> = ({
   children,
   delay = 0,
+  reverse = false,
   ...rest
 }) => {
   const [props] = useSpring(() => ({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
+    from: { opacity: reverse ? 1 : 0 },
+    to: { opacity: reverse ? 0 : 1 },
     delay,
   }));
   return (
@@ -22,10 +25,15 @@ export const Fade: React.FC<IAnimation> = ({
   );
 };
 
-export const Slide: React.FC<IAnimation> = ({ children, delay, ...rest }) => {
+export const Slide: React.FC<IAnimation> = ({
+  children,
+  delay = 0,
+  reverse = false,
+  ...rest
+}) => {
   const [props] = useSpring(() => ({
-    from: { y: -100 },
-    to: { y: 0 },
+    from: { y: reverse ? 100 : -100 },
+    to: { y: reverse ? 0 : 0 },
     delay,
   }));
   return (

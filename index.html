@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dracula">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -8,6 +8,26 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- <script>
+      const buttonTOChangeTheme = document.querySelector("#themeChanger");
+      const doc = document.querySelector("html");
+      if (!localStorage.getItem("theme")) {
+        localStorage.setItem("theme", "winter");
+      } else {
+        doc.setAttribute("data-theme", localStorage.getItem("theme"));
+      }
+      buttonTOChangeTheme.addEventListener("click", () => {
+        console.log("Hello");
+        const selectedTheme = doc.getAttribute("data-theme");
+        if (selectedTheme === "dracula") {
+          doc.setAttribute("data-theme", "winter");
+          localStorage.setItem("theme", "winter");
+        } else {
+          doc.setAttribute("data-theme", "dracula");
+          localStorage.setItem("theme", "dracula");
+        }
+      });
+    </script> -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
