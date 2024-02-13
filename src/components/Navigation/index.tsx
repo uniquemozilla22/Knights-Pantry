@@ -1,4 +1,3 @@
-import { Button } from "../../UI/Button";
 import { MoonIcon, SunIcon } from "../../assets/Icon";
 import { useTheme } from "../../hooks/useTheme";
 

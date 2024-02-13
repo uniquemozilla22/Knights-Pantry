@@ -1,5 +1,5 @@
 import { Fade, Slide } from "../../UI/Animation";
-import { ClockIcon, DoubleDownIcon, MailIcon } from "../../assets/Icon";
+import { ClockIcon, MailIcon } from "../../assets/Icon";
 import { Button } from "../../UI/Button";
 
 const Home = () => {
@@ -40,13 +40,6 @@ const Home = () => {
             </Slide>
           </div>
         </div>
-        <Fade delay={2000}>
-          <Button title="See More" hover={false}>
-            <div className="flex flex-col gap-1 items-center justify-center animation-ping">
-              <DoubleDownIcon size={24} />
-            </div>
-          </Button>
-        </Fade>
       </div>
     </div>
   );

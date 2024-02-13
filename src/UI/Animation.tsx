@@ -1,7 +1,7 @@
 import { animated, useSpring } from "@react-spring/web";
 
 interface IAnimation {
-  children: string | JSX.Element | JSX.Element[];
+  children: string | JSX.Element | JSX.Element[] | any;
   delay?: number;
   className?: string;
   reverse?: boolean;

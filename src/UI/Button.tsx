@@ -2,6 +2,7 @@ export const Button: React.FC<{
   children: any;
   title: string;
   hover?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }> = ({ children, title, hover = true, ...rest }) => {
   return (
     <button
