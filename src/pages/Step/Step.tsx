@@ -3,6 +3,7 @@ import { fetchSteps } from "../../api";
 import { useEffect, useState } from "react";
 import { IStepData } from "../../type";
 import ErrorPage from "../ErrorPage";
+import MiddleStep from "./middle";
 
 const Step = () => {
   const { id } = useParams();
@@ -24,7 +25,11 @@ const Step = () => {
     return <ErrorPage />;
   }
 
-  return <>{<p>{step.title}</p>}</>;
+  return (
+    <>
+      <MiddleStep step={step} />
+    </>
+  );
 };
 
 export default Step;

@@ -8,26 +8,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- <script>
-      const buttonTOChangeTheme = document.querySelector("#themeChanger");
-      const doc = document.querySelector("html");
-      if (!localStorage.getItem("theme")) {
-        localStorage.setItem("theme", "winter");
-      } else {
-        doc.setAttribute("data-theme", localStorage.getItem("theme"));
-      }
-      buttonTOChangeTheme.addEventListener("click", () => {
-        console.log("Hello");
-        const selectedTheme = doc.getAttribute("data-theme");
-        if (selectedTheme === "dracula") {
-          doc.setAttribute("data-theme", "winter");
-          localStorage.setItem("theme", "winter");
-        } else {
-          doc.setAttribute("data-theme", "dracula");
-          localStorage.setItem("theme", "dracula");
-        }
-      });
-    </script> -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

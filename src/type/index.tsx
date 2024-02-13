@@ -1,6 +1,6 @@
 interface IStepContent {
   title: string;
-  descriptions: string;
+  description: string;
 }
 
 export interface IStepData {
