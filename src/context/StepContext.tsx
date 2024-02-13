@@ -24,38 +24,29 @@ const mockData: ISteps = [
   },
   {},
 ];
-const getData = (): ISteps => {
-  mockData.sort((a, b) => (a.position > b.position ? -1 : 1));
-  return mockData;
-};
 
 export interface IStepContext {
   active: number;
   steps: ISteps;
-  nextStep?: () => void;
-  previousStep?: () => void;
+  nextStep: () => void;
+  previousStep: () => void;
 }
 
 const defaultValue: IStepContext = {
   active: 0,
-  steps: getData(),
+  nextStep: () => {},
+  previousStep: () => {},
 };
 
 export const StepContext = createContext<IStepContext>(defaultValue);
 
 const StepProviders = ({ children }: any) => {
-  const [step, setStep] = useState<number>(0);
+  const [step, setStep] = useState<number>(1);
   const nextStep = () => {
-    if (defaultValue.steps.length > step) setStep(step + 1);
-    else {
-      alert("No More");
-    }
+    setStep(step + 1);
   };
   const previousStep = () => {
-    if (step >= 0) setStep(step - 1);
-    else {
-      alert("No More");
-    }
+    setStep(step - 1);
   };
 
   return (

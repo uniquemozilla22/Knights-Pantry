@@ -12,7 +12,7 @@ const Home = () => {
               "https://upload.wikimedia.org/wikipedia/en/thumb/1/11/Bridgeport_Purple_Knight_logo.svg/800px-Bridgeport_Purple_Knight_logo.svg.png"
             }
             alt={"Welcome to Knights Pantry"}
-            className="h-[75vh]"
+            className="h-[70vh]"
           />
         </Fade>
         <div>
