@@ -14,7 +14,7 @@ export const Layout: React.FC<IProps> = ({ children }) => {
   return (
     <div className="h=screen w-screen">
       <Navigation />
-      <div className="mx-10 p-5">{children}</div>
+      <div className="mx-10 ">{children}</div>
       <Fade className="fixed bottom-0 left-[50%] ">
         <Button link title="See More" hover={false} onClick={nextStep}>
           <div className="flex flex-col gap-1 items-center justify-center animation-ping">
