@@ -5,12 +5,10 @@ import { IStepData } from "../../type";
 import ErrorPage from "../ErrorPage";
 import MiddleStep from "./middle";
 import LeftStep from "./left";
-import useStep from "../../hooks/useStep";
 
 const Step = () => {
   const { id } = useParams();
   const [step, setStep] = useState<IStepData>({} as IStepData);
-  const { active } = useStep();
 
   useEffect(() => {
     if (id) {
@@ -31,16 +29,32 @@ const Step = () => {
   return (
     <div className="flex flex-col items-center gap-5">
       <ul className="steps steps-vertical lg:steps-horizontal">
-        <li className={`step ${+id <= 1 ? "step-primary" : "step-ghost"} `}>
+        <li
+          className={`step ${
+            id && parseInt(id) <= 1 ? "step-primary" : "step-ghost"
+          } `}
+        >
           Register
         </li>
-        <li className={`step ${+id <= 2 ? "step-primary" : "step-ghost"}`}>
+        <li
+          className={`step ${
+            id && parseInt(id) <= 2 ? "step-primary" : "step-ghost"
+          }`}
+        >
           Choose plan
         </li>
-        <li className={`step ${+id <= 3 ? "step-primary" : "step-ghost"}`}>
+        <li
+          className={`step ${
+            id && parseInt(id) <= 3 ? "step-primary" : "step-ghost"
+          }`}
+        >
           Purchase
         </li>
-        <li className={`step ${+id <= 4 ? "step-primary" : "step-ghost"}`}>
+        <li
+          className={`step ${
+            id && parseInt(id) <= 4 ? "step-primary" : "step-ghost"
+          }`}
+        >
           Receive Product
         </li>
       </ul>

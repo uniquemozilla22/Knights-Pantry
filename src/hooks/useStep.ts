@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { StepContext } from "../context/StepContext";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const useStep = () => {
   const { active, nextStep, previousStep } = useContext(StepContext);
@@ -11,7 +11,7 @@ const useStep = () => {
     navigation(`./step/${active}`);
   };
 
-  return { active ,nextStep: nextStepRouter, previousStep };
+  return { active, nextStep: nextStepRouter, previousStep };
 };
 
 export default useStep;

@@ -7,6 +7,14 @@ interface IProps {
   step: IStepData;
 }
 const MiddleStep: React.FC<IProps> = ({ step }) => {
+  const showModal = (index: number) => {
+    const element: any = document.getElementById(`step_${index}`);
+    if (element && typeof element.showModal === "function") {
+      element.showModal();
+    } else {
+      console.error("showModal method is not available");
+    }
+  };
   return (
     <div className="grid modal-middle h-full">
       <Fade className="grid modal-middle h-full">
@@ -23,9 +31,7 @@ const MiddleStep: React.FC<IProps> = ({ step }) => {
                   <Button
                     title="Read More"
                     hover={false}
-                    onClick={() =>
-                      document.getElementById(`step_${index}`)?.showModal()
-                    }
+                    onClick={() => showModal(index)}
                   >
                     Read more...
                   </Button>

@@ -7,6 +7,14 @@ interface IProps {
   step: IStepData;
 }
 const LeftStep: React.FC<IProps> = ({ step }) => {
+  const showModal = (index: number) => {
+    const element: any = document.getElementById(`step_left_${index}`);
+    if (element && typeof element.showModal === "function") {
+      element.showModal();
+    } else {
+      console.error("showModal method is not available");
+    }
+  };
   return (
     <div className="grid justify-center h-full ">
       <Fade className="grid modal-middle h-full col-span-2">
@@ -29,15 +37,13 @@ const LeftStep: React.FC<IProps> = ({ step }) => {
                       <Button
                         title="Read More"
                         hover={false}
-                        onClick={() =>
-                          document.getElementById(`step_${index}`)?.showModal()
-                        }
+                        onClick={() => showModal(index)}
                       >
                         Read more...
                       </Button>
                     </Slide>
                   </Fade>
-                  <dialog id={`step_${index}`} className="modal">
+                  <dialog id={`step_left_${index}`} className="modal">
                     <div className="modal-box">
                       <form method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
