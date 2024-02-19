@@ -31,12 +31,10 @@ export const Navigation: React.FC = () => {
           <HomeIcon size={24} />
         </Button>
       )}
-      {active !== 0 ? (
+      {active !== 1 && (
         <Button title="Go to Home" link={false} onClick={() => restartStep()}>
           <ReStartIcon size={24} />
         </Button>
-      ) : (
-        ""
       )}
     </div>
   );

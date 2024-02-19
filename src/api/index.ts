@@ -1,3 +1,5 @@
+import { IStepTitle } from "../type";
+
 const fakeData = {
   steps: [
     {
@@ -87,7 +89,6 @@ const fakeData = {
 
 export const getStep = async (id: string) => {
   let data;
-
   try {
     const response = await fetch("http://localhost:3000/steps?id=" + id);
 
@@ -115,6 +116,24 @@ export const getSteps = async () => {
   } catch {
     data = fakeData;
   }
+
+  return data;
+};
+
+export const getStepTitle: () => Promise<IStepTitle[]> = async () => {
+  // try {
+  // const response = await fetch("http://localhost:3000/steps");
+  // if (response.status === 200) {
+  // data = await response.json();
+  // } else {
+  const data = fakeData.steps.map((step) => ({
+    title: step.title,
+    id: step.id,
+  }));
+  // }
+  // } catch {
+  // data = fakeData;
+  // }
 
   return data;
 };

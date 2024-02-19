@@ -11,6 +11,11 @@ export interface IStepData {
   content: Array<IStepContent>;
 }
 
+export interface IStepTitle {
+  title: string;
+  id: number;
+}
+
 export type IChildren = string | JSX.Element | JSX.Element[];
 
 export type ISteps = Array<IStepData>;

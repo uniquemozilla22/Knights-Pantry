@@ -33,7 +33,13 @@ const Home = () => {
             </Slide>
             <Slide delay={900} reverse>
               <Fade delay={800}>
-                <Button title="Mail for Appointments">
+                <Button
+                  title="Mail for Appointments"
+                  onClick={() =>
+                    (window.location.href =
+                      "mailto:" + "knightspantry@bridgeport.edu")
+                  }
+                >
                   <MailIcon size={40} />
                 </Button>
               </Fade>

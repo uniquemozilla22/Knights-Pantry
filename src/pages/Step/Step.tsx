@@ -5,22 +5,11 @@ import { IStepData } from "../../type";
 import ErrorPage from "../ErrorPage";
 import MiddleStep from "./middle";
 import LeftStep from "./left";
+import useStep from "../../hooks/useStep";
 
 const Step = () => {
   const { id } = useParams();
-  const [step, setStep] = useState<IStepData>({} as IStepData);
-
-  useEffect(() => {
-    if (id) {
-      fetchData(id);
-    }
-  }, [id]);
-
-  const fetchData = async (id: string) => {
-    const data: { data: IStepData } = await getStep(id);
-    console.log(data.data);
-    setStep({ ...data.data });
-  };
+  const { step, titles } = useStep(id);
 
   if (Object.keys(step).length === 0) {
     return <ErrorPage />;
@@ -28,35 +17,21 @@ const Step = () => {
 
   return (
     <div className="flex flex-col items-center gap-5">
-      <ul className="steps steps-vertical lg:steps-horizontal">
-        <li
-          className={`step ${
-            id && parseInt(id) <= 1 ? "step-primary" : "step-ghost"
-          } `}
-        >
-          Register
-        </li>
-        <li
-          className={`step ${
-            id && parseInt(id) <= 2 ? "step-primary" : "step-ghost"
-          }`}
-        >
-          Choose plan
-        </li>
-        <li
-          className={`step ${
-            id && parseInt(id) <= 3 ? "step-primary" : "step-ghost"
-          }`}
-        >
-          Purchase
-        </li>
-        <li
-          className={`step ${
-            id && parseInt(id) <= 4 ? "step-primary" : "step-ghost"
-          }`}
-        >
-          Receive Product
-        </li>
+      <ul className="steps steps-vertical lg:steps-horizontal sm:steps-vertical gap-5 flex-wrap">
+        {titles.length === 0 ? (
+          <> </>
+        ) : (
+          titles.map((title, index) => (
+            <li
+              key={index}
+              className={`step ${
+                title.id && title.id <= 1 ? "step-primary" : "step-ghost"
+              } `}
+            >
+              <p className={"truncate"}>{title.title}</p>
+            </li>
+          ))
+        )}
       </ul>
 
       {id && parseInt(id) % 2 === 0 ? (

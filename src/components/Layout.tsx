@@ -13,10 +13,10 @@ interface IProps {
 export const Layout: React.FC<IProps> = ({ children }) => {
   const { nextStep } = useStep();
   return (
-    <div className="h=screen w-screen">
+    <div className="h-screen w-screen">
       <Toaster />
       <Navigation />
-      <div className="mx-10 ">{children}</div>
+      <div className="mx-10 h-full my-5">{children}</div>
       <Fade className="fixed bottom-0 left-[50%] ">
         <Button link title="See More" hover={false} onClick={nextStep}>
           <div className="flex flex-col gap-1 items-center justify-center animation-ping">

@@ -37,7 +37,7 @@ const StepProviders = ({ children }: any) => {
   };
 
   const fetchSteps = useCallback(async () => {
-    console.log("called fetchSteps");
+    console.log("Called, fetch Steps");
     const data: ISteps = await getSteps();
     setStepData([...data]);
   }, []);
