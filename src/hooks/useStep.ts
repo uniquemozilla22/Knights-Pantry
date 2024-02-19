@@ -13,13 +13,10 @@ const useStep = (id?: string) => {
   const [titles, setTitles] = useState<IStepTitle[]>([] as IStepTitle[]);
 
   const nextStepRouter = () => {
+    console.log(active);
+    const id = titles[active].id;
     nextStep();
-    navigation(`./step/${active}`);
-  };
-
-  const getTitles = async () => {
-    const data = await getStepTitle();
-    return data;
+    navigation(`./step/${id}`);
   };
 
   const fetchStep = async (id: string) => {
@@ -33,10 +30,15 @@ const useStep = (id?: string) => {
     setTitles(data);
   };
 
+  const restartSteps = () => {
+    restartStep();
+  };
+
   useEffect(() => {
+    fetchStepTitle();
+
     if (id) {
       fetchStep(id);
-      fetchStepTitle();
     }
   }, [id]);
 
@@ -46,8 +48,7 @@ const useStep = (id?: string) => {
     active,
     nextStep: nextStepRouter,
     previousStep,
-    restartStep,
-    getTitles,
+    restartStep: restartSteps,
   };
 };
 

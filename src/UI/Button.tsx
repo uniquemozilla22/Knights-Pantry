@@ -8,13 +8,12 @@ export const Button: React.FC<{
   return (
     <button
       {...rest}
-      className={`btn rounded-lg p-2 transition ease-in-out ${
+      className={`btn rounded-lg  transition ease-in-out tooltip tooltip-aut ${
         hover && "hover:btn-primary hover:text-secondary"
       } ${link && "btn-link"}`}
+      data-tip={title}
     >
-      <div className="tooltip" data-tip={title}>
-        {children}
-      </div>
+      {children}
     </button>
   );
 };

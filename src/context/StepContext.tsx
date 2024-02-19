@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 
 export interface IStepContext {
   active: number;
-  steps?: ISteps;
   nextStep: () => void;
   previousStep: () => void;
   restartStep: () => void;
@@ -14,7 +13,6 @@ export interface IStepContext {
 const defaultValue: IStepContext = {
   active: 0,
   nextStep: () => {},
-  steps: [] as ISteps,
   previousStep: () => {},
   restartStep: () => {},
 };
@@ -22,8 +20,7 @@ const defaultValue: IStepContext = {
 export const StepContext = createContext<IStepContext>(defaultValue);
 
 const StepProviders = ({ children }: any) => {
-  const [step, setStep] = useState<number>(1);
-  const [stepData, setStepData] = useState<ISteps>([] as ISteps);
+  const [step, setStep] = useState<number>(0);
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -32,25 +29,14 @@ const StepProviders = ({ children }: any) => {
   };
 
   const restartStep = () => {
-    setStep(1);
+    setStep(0);
     toast.success("You can start from the begining");
   };
-
-  const fetchSteps = useCallback(async () => {
-    console.log("Called, fetch Steps");
-    const data: ISteps = await getSteps();
-    setStepData([...data]);
-  }, []);
-
-  useEffect(() => {
-    fetchSteps();
-  }, [fetchSteps]);
 
   return (
     <StepContext.Provider
       value={{
         ...defaultValue,
-        steps: stepData,
         active: step,
         nextStep,
         previousStep,
