@@ -11,8 +11,6 @@ const LeftStep: React.FC<IProps> = ({ step }) => {
     const element: any = document.getElementById(`step_left_${index}`);
     if (element && typeof element.showModal === "function") {
       element.showModal();
-    } else {
-      console.error("showModal method is not available");
     }
   };
   return (

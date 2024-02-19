@@ -19,7 +19,7 @@ export const useTheme = () => {
 
   useEffect(() => {
     if (!theme) {
-      window.localStorage.setItem("theme", "winter");
+      window.localStorage.setItem("theme","");
     }
   }, []);
 

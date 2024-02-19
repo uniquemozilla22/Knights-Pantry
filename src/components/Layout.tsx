@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Fade } from "../UI/Animation";
 import { Button } from "../UI/Button";
 import { DoubleDownIcon } from "../assets/Icon";
@@ -13,6 +14,7 @@ export const Layout: React.FC<IProps> = ({ children }) => {
   const { nextStep } = useStep();
   return (
     <div className="h=screen w-screen">
+      <Toaster />
       <Navigation />
       <div className="mx-10 ">{children}</div>
       <Fade className="fixed bottom-0 left-[50%] ">

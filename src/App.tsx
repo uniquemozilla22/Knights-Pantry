@@ -4,6 +4,7 @@ import StepProviders from "./context/StepContext";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout.tsx";
 import ErrorPage from "./pages/ErrorPage/index.tsx";
+import toast from "react-hot-toast";
 
 const Home = React.lazy(() => import("./pages/Home/index.tsx"));
 const Step = React.lazy(() => import("./pages/Step/Step.tsx"));

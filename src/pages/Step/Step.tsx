@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { fetchSteps } from "../../api";
+import { getStep } from "../../api";
 import { useEffect, useState } from "react";
 import { IStepData } from "../../type";
 import ErrorPage from "../ErrorPage";
@@ -17,7 +17,7 @@ const Step = () => {
   }, [id]);
 
   const fetchData = async (id: string) => {
-    const data: { data: IStepData } = await fetchSteps(id);
+    const data: { data: IStepData } = await getStep(id);
     console.log(data.data);
     setStep({ ...data.data });
   };

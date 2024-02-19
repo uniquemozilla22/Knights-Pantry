@@ -85,7 +85,7 @@ const fakeData = {
   ],
 };
 
-export const fetchSteps = async (id: string) => {
+export const getStep = async (id: string) => {
   let data;
 
   try {
@@ -101,4 +101,20 @@ export const fetchSteps = async (id: string) => {
   }
 
   return { data: data[0] };
+};
+
+export const getSteps = async () => {
+  let data;
+  try {
+    const response = await fetch("http://localhost:3000/steps");
+    if (response.status === 200) {
+      data = await response.json();
+    } else {
+      data = fakeData;
+    }
+  } catch {
+    data = fakeData;
+  }
+
+  return data;
 };
