@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout.tsx";
 import ErrorPage from "./pages/ErrorPage/index.tsx";
 import toast from "react-hot-toast";
+import Login from "./pages/Admin/Login.tsx";
 
 const Home = React.lazy(() => import("./pages/Home/index.tsx"));
 const Step = React.lazy(() => import("./pages/Step/Step.tsx"));
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path={"/"} element={<Home />} />
             <Route path={"/step/:id"} element={<Step />} />
+            <Route path={"/admin/login"} element={<Login />} />
             <Route path={"*"} element={<ErrorPage />} />
           </Routes>
         </Suspense>

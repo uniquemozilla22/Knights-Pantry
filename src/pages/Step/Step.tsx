@@ -1,7 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { getStep } from "../../api";
-import { useEffect, useState } from "react";
-import { IStepData } from "../../type";
 import ErrorPage from "../ErrorPage";
 import MiddleStep from "./middle";
 import LeftStep from "./left";

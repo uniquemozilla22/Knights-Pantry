@@ -4,7 +4,7 @@ import { Button } from "../../UI/Button";
 
 const Home = () => {
   return (
-    <div className="h-screen flex items-center w-full ">
+    <div className="h-screen flex items-center w-full">
       <div className="flex flex-col align-middle justify-center items-center gap-2 w-full h-full">
         <Fade className="" delay={500}>
           <img
@@ -12,7 +12,7 @@ const Home = () => {
               "https://upload.wikimedia.org/wikipedia/en/thumb/1/11/Bridgeport_Purple_Knight_logo.svg/800px-Bridgeport_Purple_Knight_logo.svg.png"
             }
             alt={"Welcome to Knights Pantry"}
-            className="h-[70vh]"
+            className={"h-[70vh]"}
           />
         </Fade>
         <div>

@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../UI/Button";
-import { HomeIcon, MoonIcon, ReStartIcon, SunIcon } from "../../assets/Icon";
+import {
+  HomeIcon,
+  LoginIcon,
+  MoonIcon,
+  ReStartIcon,
+  SunIcon,
+} from "../../assets/Icon";
 import { useTheme } from "../../hooks/useTheme";
 import useStep from "../../hooks/useStep";
 
@@ -29,6 +35,15 @@ export const Navigation: React.FC = () => {
       {location?.pathname !== "/" && (
         <Button title="Go to Home" link={false} onClick={() => navigate(".")}>
           <HomeIcon size={24} />
+        </Button>
+      )}
+      {location?.pathname !== "/admin/login" && (
+        <Button
+          title="Go to Home"
+          link={false}
+          onClick={() => navigate("/admin/login")}
+        >
+          <LoginIcon size={24} />
         </Button>
       )}
       {active !== 0 && (

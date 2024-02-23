@@ -30,13 +30,8 @@ const useStep = (id?: string) => {
     setTitles(data);
   };
 
-  const restartSteps = () => {
-    restartStep();
-  };
-
   useEffect(() => {
     fetchStepTitle();
-
     if (id) {
       fetchStep(id);
     }
@@ -48,7 +43,7 @@ const useStep = (id?: string) => {
     active,
     nextStep: nextStepRouter,
     previousStep,
-    restartStep: restartSteps,
+    restartStep,
   };
 };
 
