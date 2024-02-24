@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { StepContext } from "../context/StepContext";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
 import { getStep, getStepTitle } from "../api";
 import { IStepData, IStepTitle } from "../type";
 
@@ -30,6 +29,11 @@ const useStep = (id?: string) => {
     setTitles(data);
   };
 
+  const restartSteps = () => {
+    restartStep();
+    setTimeout(() => navigation(`/step/${active}`), 1000);
+  };
+
   useEffect(() => {
     fetchStepTitle();
     if (id) {
@@ -43,7 +47,7 @@ const useStep = (id?: string) => {
     active,
     nextStep: nextStepRouter,
     previousStep,
-    restartStep,
+    restartStep: restartSteps,
   };
 };
 

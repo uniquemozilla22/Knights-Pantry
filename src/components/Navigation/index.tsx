@@ -39,8 +39,8 @@ export const Navigation: React.FC = () => {
       )}
       {location?.pathname !== "/admin/login" && (
         <Button
-          title="Go to Home"
-          link={false}
+          title="Admin Login"
+          link={true}
           onClick={() => navigate("/admin/login")}
         >
           <LoginIcon size={24} />

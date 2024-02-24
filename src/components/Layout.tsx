@@ -5,14 +5,16 @@ import { DoubleDownIcon } from "../assets/Icon";
 import useStep from "../hooks/useStep";
 import { IChildren } from "../type";
 import { Navigation } from "./Navigation";
+import Sidebar from "./Sidebar";
 
 interface IProps {
   children: IChildren;
+  admin?: boolean;
 }
 
-export const Layout: React.FC<IProps> = ({ children }) => {
+export const Layout: React.FC<IProps> = ({ children, admin }) => {
   const { nextStep } = useStep();
-  return (
+  return !admin ? (
     <div className="h-screen w-screen">
       <Toaster />
       <Navigation />
@@ -24,6 +26,11 @@ export const Layout: React.FC<IProps> = ({ children }) => {
           </div>
         </Button>
       </Fade>
+    </div>
+  ) : (
+    <div>
+      <Sidebar />
+      {children}
     </div>
   );
 };
