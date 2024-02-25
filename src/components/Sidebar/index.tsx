@@ -31,12 +31,11 @@ const Sidebar = () => {
           <div className="flex-1 px-2 mx-2">Navbar Title</div>
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal">
-              {/* Navbar menu content here */}
               <li>
-                <a>Navbar Item 1</a>
+                <a>Manage Steps</a>
               </li>
               <li>
-                <a>Navbar Item 2</a>
+                <a>Manage Admin Access</a>
               </li>
               <li>
                 <UserAvatar username="Melanie" />
@@ -44,7 +43,6 @@ const Sidebar = () => {
             </ul>
           </div>
         </div>
-        {/* Page content here */}
         Content
       </div>
       <div className="drawer-side ">
@@ -54,7 +52,6 @@ const Sidebar = () => {
           className="drawer-overlay"
         ></label>
         <ul className="menu p-4 w-80 min-h-full bg-base-200 relative overflow-hidden">
-          {/* Sidebar content here */}
           <li>
             <a>Sidebar Item 1</a>
           </li>
