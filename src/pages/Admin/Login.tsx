@@ -1,16 +1,16 @@
-"use server";
-import { useState } from "react";
 import { Button } from "../../UI/Button";
+import { Layout } from "../../components/Layout";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
+  const { loginUser } = useAuth();
+
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(event.target["user-name"].value);
-    console.log(event.target["user-password"].value);
+    loginUser(
+      event.target["user-name"].value,
+      event.target["user-password"].value
+    );
   };
 
   return (
@@ -22,31 +22,31 @@ const Login = () => {
         >
           <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text">Username</span>
+              <label htmlFor="name-user" className="label-text">
+                Username
+              </label>
             </div>
             <input
+              id="name-user"
               type="text"
               name="user-name"
               placeholder="Username"
               className="input input-bordered w-full max-w-xs"
             />
-            <div className="label">
-              <span className="label-text-alt">Bottom Left label</span>
-            </div>
           </label>
           <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text">Username</span>
+              <label htmlFor="password-user" className="label-text">
+                Password
+              </label>
             </div>
             <input
+              id="password-user"
               type="password"
               name="user-password"
               placeholder="Password"
               className="input input-bordered w-full max-w-xs"
             />
-            <div className="label">
-              <span className="label-text-alt">Bottom Left label</span>
-            </div>
           </label>
 
           <Button title="Submit Form" className="">

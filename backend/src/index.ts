@@ -1,10 +1,7 @@
-// @ts-ignore
 import * as mongoose from "mongoose";
 import { app } from "./app";
 import config from "./config/config";
 import logger from "./config/logger";
-
-// @ts-ignore
 
 const main = async () => {
   let server: any;

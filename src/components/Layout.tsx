@@ -10,11 +10,12 @@ import Sidebar from "./Sidebar";
 interface IProps {
   children: IChildren;
   admin?: boolean;
+  login?: boolean;
 }
 
-export const Layout: React.FC<IProps> = ({ children, admin }) => {
+export const Layout: React.FC<IProps> = ({ children, admin, login }) => {
   const { nextStep } = useStep();
-  return !admin ? (
+  return !admin && !login ? (
     <div className="h-screen w-screen">
       <Toaster />
       <Navigation />
@@ -28,9 +29,10 @@ export const Layout: React.FC<IProps> = ({ children, admin }) => {
       </Fade>
     </div>
   ) : (
-    <div>
-      <Sidebar />
+    <>
+      {!login && <Sidebar />}
+      <Toaster />
       {children}
-    </div>
+    </>
   );
 };

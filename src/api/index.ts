@@ -1,5 +1,14 @@
 import { IStepTitle } from "../type";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
+const baseURL = "http://localhost:8080/v1/";
+
+const fetchBase = {
+  mode: "cors" as RequestMode,
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 const fakeData = {
   steps: [
     {
@@ -107,7 +116,7 @@ export const getStep = async (id: string) => {
 export const getSteps = async () => {
   let data;
   try {
-    const response = await fetch("http://localhost:3000/steps");
+    const response = await axios("http://localhost:3000/steps");
     if (response.status === 200) {
       data = await response.json();
     } else {
@@ -136,4 +145,25 @@ export const getStepTitle: () => Promise<IStepTitle[]> = async () => {
   // }
 
   return data;
+};
+
+export const PostLoginUser: (
+  email: string,
+  password: string
+) => Promise<AxiosResponse> = async (email, password) => {
+  try {
+    const response = await axios(`${baseURL}auth/login`, {
+      ...fetchBase,
+      method: "POST",
+      data: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const data = response.data;
+    return data;
+  } catch (error: any) {
+    console.log(error.response.data);
+    return { ...error.response.data };
+  }
 };

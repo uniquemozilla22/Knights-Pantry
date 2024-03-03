@@ -1,11 +1,10 @@
 import { Fade, Slide } from "../../UI/Animation";
 import { ClockIcon, MailIcon } from "../../assets/Icon";
 import { Button } from "../../UI/Button";
-import { Layout } from "../../components/Layout";
 
 const Home = () => {
   return (
-    <Layout>
+    <>
       <div className="h-screen flex items-center w-full">
         <div className="flex flex-col align-middle justify-center items-center gap-2 w-full h-full">
           <Fade className="" delay={500}>
@@ -50,7 +49,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

@@ -3,7 +3,6 @@ import ErrorPage from "../ErrorPage";
 import MiddleStep from "./middle";
 import LeftStep from "./left";
 import useStep from "../../hooks/useStep";
-import { Layout } from "../../components/Layout";
 
 const Step = () => {
   const { id } = useParams();
@@ -17,7 +16,7 @@ const Step = () => {
   console.log(titles);
 
   return (
-    <Layout>
+    <>
       <div className="flex flex-col items-center gap-10">
         <ul className="steps steps-vertical lg:steps-horizontal sm:steps-vertical gap-5 flex-wrap">
           {titles.length === 0 ? (
@@ -43,7 +42,7 @@ const Step = () => {
           <LeftStep step={step} />
         )}
       </div>
-    </Layout>
+    </>
   );
 };
 
