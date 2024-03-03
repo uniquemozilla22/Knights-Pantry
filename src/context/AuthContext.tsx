@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import config from "../utils/config";
+import { Navigate } from "react-router-dom";
 
 interface IAuthContext {
   token: string;
@@ -8,7 +9,12 @@ interface IAuthContext {
 
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
-export const AuthContextProvider = ({ children }) => {
+interface IAuthContextProvider {
+  children: any;
+}
+export const AuthContextProvider: React.FC<IAuthContextProvider> = ({
+  children,
+}) => {
   const [token, setToken] = useState<string>(
     localStorage.getItem(config.tokenName) || ""
   );

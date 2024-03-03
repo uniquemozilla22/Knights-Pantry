@@ -1,4 +1,4 @@
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { Fade } from "../UI/Animation";
 import { Button } from "../UI/Button";
 import { DoubleDownIcon } from "../assets/Icon";
@@ -6,16 +6,45 @@ import useStep from "../hooks/useStep";
 import { IChildren } from "../type";
 import { Navigation } from "./Navigation";
 import Sidebar from "./Sidebar";
+import useAuth from "../hooks/useAuth";
+import { Navigate, useLocation, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 interface IProps {
   children: IChildren;
-  admin?: boolean;
-  login?: boolean;
 }
 
-export const Layout: React.FC<IProps> = ({ children, admin, login }) => {
+export const Layout: React.FC<IProps> = ({ children }) => {
   const { nextStep } = useStep();
-  return !admin && !login ? (
+  const { message } = useParams();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (message) {
+      toast.error(message);
+    }
+  }, [message]);
+
+  if (pathname.split("/").includes("admin")) {
+    return (
+      <AdminLayout>
+        <Sidebar />
+        <Toaster />
+        {children}
+      </AdminLayout>
+    );
+  }
+
+  if (pathname.split("/").includes("login")) {
+    return (
+      <>
+        <Toaster />
+        {children}
+      </>
+    );
+  }
+
+  return (
     <div className="h-screen w-screen">
       <Toaster />
       <Navigation />
@@ -28,11 +57,21 @@ export const Layout: React.FC<IProps> = ({ children, admin, login }) => {
         </Button>
       </Fade>
     </div>
-  ) : (
-    <>
-      {!login && <Sidebar />}
-      <Toaster />
-      {children}
-    </>
   );
+};
+
+const AdminLayout = ({ children }) => {
+  const { state } = useLocation();
+  const { isLoggedIn } = useAuth();
+
+  console.log("admin");
+  console.log(state, isLoggedIn());
+
+  if (!state || !isLoggedIn()) {
+    return (
+      <Navigate to={"/?message=You must be logged in to access this page"} />
+    );
+  }
+
+  return children;
 };

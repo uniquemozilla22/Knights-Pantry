@@ -1,5 +1,4 @@
 import { Button } from "../../UI/Button";
-import { Layout } from "../../components/Layout";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
@@ -23,14 +22,14 @@ const Login = () => {
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <label htmlFor="name-user" className="label-text">
-                Username
+                Email
               </label>
             </div>
             <input
               id="name-user"
-              type="text"
+              type="email"
               name="user-name"
-              placeholder="Username"
+              placeholder="Email"
               className="input input-bordered w-full max-w-xs"
             />
           </label>

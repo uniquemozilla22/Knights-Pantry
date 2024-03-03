@@ -37,11 +37,11 @@ export const Navigation: React.FC = () => {
           <HomeIcon size={24} />
         </Button>
       )}
-      {location?.pathname !== "/admin/login" && (
+      {location?.pathname !== "/login" && (
         <Button
           title="Admin Login"
           link={true}
-          onClick={() => navigate("/admin/login")}
+          onClick={() => navigate("/login")}
         >
           <LoginIcon size={24} />
         </Button>
