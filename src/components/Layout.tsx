@@ -38,6 +38,7 @@ export const Layout: React.FC<IProps> = ({ children }) => {
   if (pathname.split("/").includes("login")) {
     return (
       <>
+        {console.log("called")}
         <Toaster />
         {children}
       </>
@@ -62,12 +63,14 @@ export const Layout: React.FC<IProps> = ({ children }) => {
 
 const AdminLayout = ({ children }) => {
   const { state } = useLocation();
-  const { isLoggedIn } = useAuth();
+  const { token, isLoggedIn } = useAuth();
+
+  console.log(!isLoggedIn(), token, "Login status");
 
   console.log("admin");
   console.log(state, isLoggedIn());
 
-  if (!state || !isLoggedIn()) {
+  if (!isLoggedIn()) {
     return (
       <Navigate to={"/?message=You must be logged in to access this page"} />
     );

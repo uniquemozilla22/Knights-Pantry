@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server": "json-server -w Data.json",
-    "install-backend": "cd backend && npm i"
+    "install-backend": "cd backend && npm i",
+    "run-backend": "cd backend && npm run dev"
   },
   "dependencies": {
     "@react-spring/web": "^9.7.3",

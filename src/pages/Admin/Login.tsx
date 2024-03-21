@@ -1,3 +1,4 @@
+import toast, { Toaster } from "react-hot-toast";
 import { Button } from "../../UI/Button";
 import useAuth from "../../hooks/useAuth";
 
@@ -14,6 +15,7 @@ const Login = () => {
 
   return (
     <>
+      <Toaster />
       <div className="min-h-screen flex justify-center items-center">
         <form
           onSubmit={handleSubmit}

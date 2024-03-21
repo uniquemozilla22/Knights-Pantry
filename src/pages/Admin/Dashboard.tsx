@@ -1,5 +1,11 @@
+import { Admin } from "./Admin";
+
 const Dashboard = () => {
-  return <>Admin</>;
+  return (
+    <>
+      <Admin />
+    </>
+  );
 };
 
 export default Dashboard;

@@ -160,10 +160,28 @@ export const PostLoginUser: (
         password,
       }),
     });
-    const data = response.data;
+    const data = response;
     return data;
   } catch (error: any) {
-    console.log(error.response.data);
-    return { ...error.response.data };
+    console.log(error.response);
+    return { ...error.response };
+  }
+};
+
+export const PostLogoutUser = async (token: string) => {
+  try {
+    const response = await axios(`${baseURL}auth/logout`, {
+      ...fetchBase,
+      method: "POST",
+      data: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const data = response;
+    return data;
+  } catch (error: any) {
+    console.log(error.response);
+    return { ...error.response };
   }
 };
