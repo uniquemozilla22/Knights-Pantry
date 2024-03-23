@@ -9,6 +9,7 @@ import Sidebar from "./Sidebar";
 import useAuth from "../hooks/useAuth";
 import { Navigate, useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { LoaderContextProvider } from "../context/LoaderContext";
 
 interface IProps {
   children: IChildren;
@@ -27,20 +28,24 @@ export const Layout: React.FC<IProps> = ({ children }) => {
 
   if (pathname.split("/").includes("admin")) {
     return (
-      <AdminLayout>
-        <Sidebar />
-        <Toaster />
-        {children}
-      </AdminLayout>
+      <LoaderContextProvider>
+        <AdminLayout>
+          <Sidebar />
+          <Toaster />
+          {children}
+        </AdminLayout>
+      </LoaderContextProvider>
     );
   }
 
   if (pathname.split("/").includes("login")) {
     return (
       <>
-        {console.log("called")}
-        <Toaster />
-        {children}
+        <LoaderContextProvider>
+          {console.log("called")}
+          <Toaster />
+          {children}
+        </LoaderContextProvider>
       </>
     );
   }

@@ -1,7 +1,8 @@
 import { IStepTitle } from "../type";
 import axios, { AxiosError, AxiosResponse } from "axios";
+import config from "../utils/config";
 
-const baseURL = "http://localhost:8080/v1/";
+const baseURL = config.apiLink || "http://localhost:8080/v1/";
 
 const fetchBase = {
   mode: "cors" as RequestMode,
@@ -9,92 +10,92 @@ const fetchBase = {
     "Content-Type": "application/json",
   },
 };
-const fakeData = {
-  steps: [
-    {
-      id: 2,
-      title: "Here you Shop the most",
-      image: "",
-      content: [
-        {
-          title: "Here you Shop",
-          description:
-            " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-        {
-          title: "Here you Shop",
-          description:
-            " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-      ],
-      position: 2,
-    },
-    {
-      id: 3,
-      title: "Here you Shop the most",
-      image: "",
-      content: [
-        {
-          title: "Shopping here is fun",
-          description:
-            "  access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-        {
-          title: "Here you Shop",
-          description:
-            " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-        {
-          title: "Shopping here is fun",
-          description:
-            " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-        {
-          title: "Here you Shop",
-          description:
-            " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-      ],
-      position: 2,
-    },
-    {
-      id: 4,
-      title: "Here you Shop the most",
-      image: "",
-      content: [
-        {
-          title: "Shopping here is fun",
-          description:
-            " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-        {
-          title: "Here you Shop",
-          description:
-            " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-      ],
-      position: 2,
-    },
-    {
-      id: 5,
-      title: "Here you Shop the most",
-      image: "",
-      content: [
-        {
-          title: "Shopping here is fun",
-          description:
-            " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-        {
-          title: "Here you Shop",
-          description:
-            " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
-        },
-      ],
-      position: 2,
-    },
-  ],
-};
+// const fakeData = {
+//   steps: [
+//     {
+//       id: 2,
+//       title: "Here you Shop the most",
+//       image: "",
+//       content: [
+//         {
+//           title: "Here you Shop",
+//           description:
+//             " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//         {
+//           title: "Here you Shop",
+//           description:
+//             " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//       ],
+//       position: 2,
+//     },
+//     {
+//       id: 3,
+//       title: "Here you Shop the most",
+//       image: "",
+//       content: [
+//         {
+//           title: "Shopping here is fun",
+//           description:
+//             "  access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//         {
+//           title: "Here you Shop",
+//           description:
+//             " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//         {
+//           title: "Shopping here is fun",
+//           description:
+//             " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//         {
+//           title: "Here you Shop",
+//           description:
+//             " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//       ],
+//       position: 2,
+//     },
+//     {
+//       id: 4,
+//       title: "Here you Shop the most",
+//       image: "",
+//       content: [
+//         {
+//           title: "Shopping here is fun",
+//           description:
+//             " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//         {
+//           title: "Here you Shop",
+//           description:
+//             " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//       ],
+//       position: 2,
+//     },
+//     {
+//       id: 5,
+//       title: "Here you Shop the most",
+//       image: "",
+//       content: [
+//         {
+//           title: "Shopping here is fun",
+//           description:
+//             " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//         {
+//           title: "Here you Shop",
+//           description:
+//             " The Knights Pantry will provide all UB students access to non-perishable foods, snacks, and personal hygiene items free of charge. Students can access The Knights Pantry in two ways: ",
+//         },
+//       ],
+//       position: 2,
+//     },
+//   ],
+// };
 
 export const getStep = async (id: string) => {
   let data;

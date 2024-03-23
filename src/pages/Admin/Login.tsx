@@ -1,9 +1,11 @@
 import toast, { Toaster } from "react-hot-toast";
 import { Button } from "../../UI/Button";
 import useAuth from "../../hooks/useAuth";
+import useLoading from "../../hooks/useLoading";
 
 const Login = () => {
   const { loginUser } = useAuth();
+  const { isUserLoginLoading } = useLoading();
 
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -50,7 +52,13 @@ const Login = () => {
             />
           </label>
 
-          <Button title="Submit Form" className="">
+          <Button
+            title="Submit Form"
+            className=" flex justify-center align-middle"
+          >
+            {isUserLoginLoading && (
+              <span className="loading loading-spinner"></span>
+            )}
             Submit
           </Button>
         </form>

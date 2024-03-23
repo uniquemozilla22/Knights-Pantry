@@ -5,25 +5,30 @@ import { AuthContext } from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AxiosResponse } from "axios";
 import { responseCheckForError } from "../utils/addons";
+import { LoaderContext } from "../context/LoaderContext";
+import useLoading from "./useLoading";
 
 const useAuth = () => {
   const { token, setToken } = useContext(AuthContext);
+
+  const { withUserLoginLoading } = useLoading();
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const loginUser = async (email: string, password: string) => {
-    const response: AxiosResponse = await PostLoginUser(email, password);
-    if (responseCheckForError(response)) {
-      console.log("Error Occured");
-      toast.error(response.data.message);
-      setToken("");
-      return;
-    }
-    setToken(response.data.token);
-    navigate(`/admin`, { state: response.data });
+    withUserLoginLoading(async () => {
+      const response: AxiosResponse = await PostLoginUser(email, password);
+      if (responseCheckForError(response)) {
+        console.log("Error Occured");
+        toast.error(response.data.message);
+        setToken("");
+        return;
+      }
+      setToken(response.data.token);
+      navigate(`/admin`, { state: response.data });
+    });
   };
 
-  
   const isLoggedIn = (): boolean => {
     if (token && token === "") return false;
     else return true;
