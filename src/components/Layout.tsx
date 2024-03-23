@@ -68,7 +68,7 @@ const AdminLayout = ({ children }) => {
   console.log(!isLoggedIn(), token, "Login status");
 
   console.log("admin");
-  console.log(state, isLoggedIn());
+  console.log(state, isLoggedIn(), "Logged IN");
 
   if (!isLoggedIn()) {
     return (

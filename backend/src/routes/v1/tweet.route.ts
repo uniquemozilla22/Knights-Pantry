@@ -2,15 +2,19 @@ import express from "express";
 import {
   createTweet,
   deleteTweet,
+  getPublicFeed,
   getUserFeed,
   getUserTweet,
   handleTweetLikeStatus,
   updateTweet,
+  
 } from "../../controllers/tweet.controller";
 import auth from "../../middlewares/auth";
 import validate from "../../middlewares/validate";
 import * as tweetValidations from "../../validations/tweet.validation";
 const tweetRoute = express.Router();
+
+tweetRoute.get("/public/feed", getPublicFeed);
 
 tweetRoute.get("/feed", auth("tweet"), getUserFeed);
 

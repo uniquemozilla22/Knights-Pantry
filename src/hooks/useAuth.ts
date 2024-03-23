@@ -13,10 +13,6 @@ const useAuth = () => {
 
   const loginUser = async (email: string, password: string) => {
     const response: AxiosResponse = await PostLoginUser(email, password);
-
-    console.log(response, "data");
-
-    console.log(responseCheckForError(response));
     if (responseCheckForError(response)) {
       console.log("Error Occured");
       toast.error(response.data.message);
@@ -27,6 +23,7 @@ const useAuth = () => {
     navigate(`/admin`, { state: response.data });
   };
 
+  
   const isLoggedIn = (): boolean => {
     if (token && token === "") return false;
     else return true;
@@ -47,6 +44,7 @@ const useAuth = () => {
       toast.error("There seems to be somthing wrong with the network");
     }
   };
+
   return { isLoggedIn, loginUser, getUserLoggedInData, logout };
 };
 

@@ -1,8 +1,8 @@
 import config from "../../config/config";
 import authRoute from "./auth.route";
+import stepRouter from "./step.route";
 import tweetRoute from "./tweet.route";
-
-const express = require("express");
+import express from "express";
 
 const router = express.Router();
 
@@ -14,6 +14,10 @@ const defaultRoutes = [
   {
     path: "/tweet",
     route: tweetRoute,
+  },
+  {
+    path: "/steps",
+    route: stepRouter,
   },
 ];
 

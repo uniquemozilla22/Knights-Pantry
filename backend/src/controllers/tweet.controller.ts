@@ -145,6 +145,44 @@ const handleTweetLikeStatus = catchAsync(async (req, res) => {
     }
   }
 });
+const getPublicFeed = catchAsync(async (req, res) => {
+  const tweets = await Tweet.aggregate([
+    {
+      $match: {},
+    },
+    {
+      $lookup: {
+        from: "likes",
+        localField: "_id",
+        foreignField: "tweet",
+        as: "likes",
+      },
+    },
+    {
+      $addFields: {
+        totalLikes: { $size: "$likes" },
+        isLikedByCurrentUser: {
+          $cond: {
+            if: { $gt: [{ $size: "$isLikedByCurrentUser" }, 0] },
+            then: true,
+            else: false,
+          },
+        },
+      },
+    },
+    {
+      $project: {
+        likes: 0,
+      },
+    },
+    {
+      $sort: {
+        createdAt: -1,
+      },
+    },
+  ]);
+  res.status(httpStatus.OK).send({ data: tweets });
+});
 
 const getUserFeed = catchAsync(async (req, res) => {
   const page = parseInt(req.query.page) || 1;
@@ -234,4 +272,5 @@ export {
   updateTweet,
   handleTweetLikeStatus,
   getUserFeed,
+  getPublicFeed,
 };
