@@ -1,5 +1,5 @@
 import express from "express";
-import { getPublicSteps } from "../../controllers/step.controller";
+import { createSteps, getPublicSteps } from "../../controllers/step.controller";
 import validate from "../../middlewares/validate";
 import * as StepValidation from "../../validations/step.validation";
 import auth from "../../middlewares/auth";
@@ -10,7 +10,7 @@ stepRouter.get("/", getPublicSteps);
 stepRouter.post(
   "/create",
   [auth("steps"), validate(StepValidation.createSteps)],
-  getPublicSteps
+  createSteps
 );
 
 export default stepRouter;

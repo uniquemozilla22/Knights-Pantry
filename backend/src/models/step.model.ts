@@ -6,7 +6,6 @@ export interface IStepDescription {
 }
 
 export interface IStep {
-  message: string;
   user: any;
   title: string;
   description: Array<IStepDescription>;
@@ -16,7 +15,6 @@ export interface IStep {
 
 const stepSchema = new Schema<IStep>(
   {
-    message: { type: String, required: true },
     user: { type: Types.ObjectId, ref: "User", required: true },
     title: { type: String, required: true },
     description: [

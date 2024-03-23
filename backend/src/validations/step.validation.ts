@@ -1,7 +1,6 @@
 import Joi from "joi";
 
 export const steps = Joi.object({
-  message: Joi.string().required(),
   title: Joi.string().required(),
   description: Joi.array().items(
     Joi.object().keys({

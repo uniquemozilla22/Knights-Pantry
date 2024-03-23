@@ -12,11 +12,14 @@ export const getPublicSteps = catchAsync(async (req, res) => {
 export const createSteps = catchAsync(async (req, res) => {
   const { user, body }: { user: IUser; body: IStep } = req;
   if (!body.title || !body.image || body.description.length === 0) {
-    res.status(httpStatus.NO_CONTENT).send({
+    res.status(422).send({
       message: "There must be a title , description and image for a step",
     });
     return;
   }
-  await saveStep(body);
-  res.status(httpStatus.OK).send({ message: "Success" });
+
+  body["user"] = user._id;
+
+  const response = await saveStep(body);
+  res.status(httpStatus.OK).send({ response, message: "Success" });
 });
