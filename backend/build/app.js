@@ -4,8 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.app = void 0;
-const http_status_1 = __importDefault(require("http-status"));
-const ApiError_1 = __importDefault(require("./utils/ApiError"));
 // ES6 import syntax
 const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
@@ -50,12 +48,18 @@ passport_1.default.use("jwt", passport_2.jwtStrategy);
 // if (config.env === "production") {
 //   app.use("/v1/auth", authLimiter);
 // }
+app.use((req, res, next) => {
+    console.log(req.url);
+    next();
+});
 // v1 api routes
 app.use("/v1", v1_1.default);
 // send back a 404 error for any unknown api request
-app.use((req, res, next) => {
-    next(new ApiError_1.default(http_status_1.default.NOT_FOUND, "Not found"));
-});
+// app.use((req: Request, res: any, next: any) => {
+//   if (req.method != "OPTIONS") {
+//     next(new ApiError(httpStatus.NOT_FOUND, "Not found"));
+//   }
+// });
 // convert error to ApiError, if needed
 app.use(error_1.errorConverter);
 // handle error

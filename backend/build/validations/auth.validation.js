@@ -23,7 +23,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyEmail = exports.resetPassword = exports.forgotPassword = exports.refreshTokens = exports.logout = exports.login = exports.register = void 0;
 const Joi = __importStar(require("joi"));
 const { password } = require("./custom.validation");
 const register = {
@@ -35,43 +34,45 @@ const register = {
         age: Joi.number().required(),
     }),
 };
-exports.register = register;
 const login = {
     body: Joi.object().keys({
         password: Joi.string().required(),
         email: Joi.string().required().email(),
     }),
 };
-exports.login = login;
 const logout = {
     body: Joi.object().keys({
         refreshToken: Joi.string().required(),
     }),
 };
-exports.logout = logout;
 const refreshTokens = {
     body: Joi.object().keys({
         refreshToken: Joi.string().required(),
     }),
 };
-exports.refreshTokens = refreshTokens;
 const forgotPassword = {
     body: Joi.object().keys({
         email: Joi.string().email().required(),
         code: Joi.string().length(4).required(),
     }),
 };
-exports.forgotPassword = forgotPassword;
 const resetPassword = {
     body: Joi.object().keys({
         email: Joi.string().required().email(),
         password: Joi.string().required().custom(password),
     }),
 };
-exports.resetPassword = resetPassword;
 const verifyEmail = {
     query: Joi.object().keys({
         token: Joi.string().required(),
     }),
 };
-exports.verifyEmail = verifyEmail;
+exports.default = {
+    register,
+    login,
+    logout,
+    refreshTokens,
+    forgotPassword,
+    resetPassword,
+    verifyEmail,
+};

@@ -35,12 +35,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// @ts-ignore
 const mongoose = __importStar(require("mongoose"));
 const app_1 = require("./app");
 const config_1 = __importDefault(require("./config/config"));
 const logger_1 = __importDefault(require("./config/logger"));
-// @ts-ignore
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     let server;
     mongoose.set("strictQuery", true);

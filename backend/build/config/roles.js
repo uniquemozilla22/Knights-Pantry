@@ -5,5 +5,5 @@ const roles = ["user", "admin"];
 exports.roles = roles;
 const roleRights = new Map();
 exports.roleRights = roleRights;
-roleRights.set(roles[0], ["logout", "tweet"]);
+roleRights.set(roles[0], ["logout", "tweet", "steps"]);
 roleRights.set(roles[1], []);

@@ -35,7 +35,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserFeed = exports.handleTweetLikeStatus = exports.updateTweet = exports.getUserTweet = exports.deleteTweet = exports.getTweet = exports.createTweet = void 0;
+exports.getPublicFeed = exports.getUserFeed = exports.handleTweetLikeStatus = exports.updateTweet = exports.getUserTweet = exports.deleteTweet = exports.getTweet = exports.createTweet = void 0;
 const httpStatus = __importStar(require("http-status"));
 const tweet_model_1 = __importDefault(require("../models/tweet.model"));
 const tweet_service_1 = require("../services/tweet.service");
@@ -159,6 +159,45 @@ const handleTweetLikeStatus = (0, catchAsync_1.default)((req, res) => __awaiter(
     }
 }));
 exports.handleTweetLikeStatus = handleTweetLikeStatus;
+const getPublicFeed = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const tweets = yield tweet_model_1.default.aggregate([
+        {
+            $match: {},
+        },
+        {
+            $lookup: {
+                from: "likes",
+                localField: "_id",
+                foreignField: "tweet",
+                as: "likes",
+            },
+        },
+        {
+            $addFields: {
+                totalLikes: { $size: "$likes" },
+                isLikedByCurrentUser: {
+                    $cond: {
+                        if: { $gt: [{ $size: "$isLikedByCurrentUser" }, 0] },
+                        then: true,
+                        else: false,
+                    },
+                },
+            },
+        },
+        {
+            $project: {
+                likes: 0,
+            },
+        },
+        {
+            $sort: {
+                createdAt: -1,
+            },
+        },
+    ]);
+    res.status(httpStatus.OK).send({ data: tweets });
+}));
+exports.getPublicFeed = getPublicFeed;
 const getUserFeed = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;

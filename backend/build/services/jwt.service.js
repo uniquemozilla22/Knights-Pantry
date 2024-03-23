@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require("jsonwebtoken");
 const moment_1 = __importDefault(require("moment"));
 const ApiError_1 = __importDefault(require("../utils/ApiError"));
+const config_1 = __importDefault(require("../config/config"));
 const httpStatus = require("http-status");
 const userService = require("./user.service");
 const { Token } = require("../models");
@@ -27,7 +28,7 @@ const { tokenTypes } = require("../config/tokens");
  * @param {string} [secret]
  * @returns {string}
  */
-const generateToken = (userId, type, secret = config.jwt.secret) => {
+const generateToken = (userId, type, secret = config_1.default.jwt.secret) => {
     const payload = {
         sub: userId,
         iat: (0, moment_1.default)().unix(),
@@ -60,7 +61,7 @@ const saveToken = (token, userId, type, blacklisted = false) => __awaiter(void 0
  * @returns {Promise<Token>}
  */
 const verifyToken = (token, type) => __awaiter(void 0, void 0, void 0, function* () {
-    const payload = jwt.verify(token, config.jwt.secret);
+    const payload = jwt.verify(token, config_1.default.jwt.secret);
     const tokenDoc = yield Token.findOne({
         token,
         type,
@@ -92,7 +93,7 @@ const generateResetPasswordToken = (email) => __awaiter(void 0, void 0, void 0, 
     if (!user) {
         throw new ApiError_1.default(httpStatus.NOT_FOUND, "No users found with this email");
     }
-    const expires = (0, moment_1.default)().add(config.jwt.resetPasswordExpirationMinutes, "minutes");
+    const expires = (0, moment_1.default)().add(config_1.default.jwt.resetPasswordExpirationMinutes, "minutes");
     const resetPasswordToken = generateToken(user.id, expires, tokenTypes.RESET_PASSWORD);
     yield saveToken(resetPasswordToken, user.id, expires, tokenTypes.RESET_PASSWORD);
     return resetPasswordToken;
@@ -103,13 +104,13 @@ const generateResetPasswordToken = (email) => __awaiter(void 0, void 0, void 0, 
  * @returns {Promise<string>}
  */
 const generateVerifyEmailToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
-    const expires = (0, moment_1.default)().add(config.jwt.verifyEmailExpirationMinutes, "minutes");
+    const expires = (0, moment_1.default)().add(config_1.default.jwt.verifyEmailExpirationMinutes, "minutes");
     const verifyEmailToken = generateToken(user.id, expires, tokenTypes.VERIFY_EMAIL);
     yield saveToken(verifyEmailToken, user.id, expires, tokenTypes.VERIFY_EMAIL);
     return verifyEmailToken;
 });
 const removeToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
-    let res = yield Token.findOneAndDelete({ user: user.id });
+    const res = yield Token.findOneAndDelete({ user: user.id });
     return res;
 });
 module.exports = {
