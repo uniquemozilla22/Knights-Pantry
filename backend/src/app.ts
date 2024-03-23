@@ -17,7 +17,6 @@ import { authLimiter } from "./middlewares/rateLimiter";
 import { errorConverter, errorHandler } from "./middlewares/error";
 import { fileParser } from "express-multipart-file-parser";
 import routes from "./routes/v1";
-import { Request } from "supertest";
 
 const app = express();
 
@@ -62,7 +61,7 @@ passport.use("jwt", jwtStrategy);
 //   app.use("/v1/auth", authLimiter);
 // }
 
-app.use((req: Request, res: any, next: any) => {
+app.use((req: any, res: any, next: any) => {
   console.log(req.url);
   next();
 });
