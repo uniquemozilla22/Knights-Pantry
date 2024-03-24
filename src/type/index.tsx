@@ -4,11 +4,11 @@ interface IStepContent {
 }
 
 export interface IStepData {
-  id: number;
+  user: any;
   title: string;
+  description: Array<IStepContent>;
   image: string;
   position: number;
-  content: Array<IStepContent>;
 }
 
 export interface IStepTitle {

@@ -21,6 +21,7 @@ export const StepContext = createContext<IStepContext>(defaultValue);
 
 const StepProviders = ({ children }: any) => {
   const [step, setStep] = useState<number>(0);
+
   const nextStep = () => {
     setStep(step + 1);
   };

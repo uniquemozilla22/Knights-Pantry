@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-export type LOADING_ACTIONS = "USER/LOGIN";
+export type LOADING_ACTIONS = "USER/LOGIN" | "STEPS/FETCH";
 
 interface ILoaderContext {
   loading: string[];

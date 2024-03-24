@@ -97,55 +97,11 @@ const fetchBase = {
 //   ],
 // };
 
-export const getStep = async (id: string) => {
-  let data;
-  try {
-    const response = await fetch("http://localhost:3000/steps?id=" + id);
-
-    if (response.status === 200) {
-      data = await response.json();
-    } else {
-      data = fakeData.steps.filter((step) => step.id === parseInt(id));
-    }
-  } catch (error) {
-    data = fakeData.steps.filter((step) => step.id === parseInt(id));
-  }
-
-  return { data: data[0] };
-};
+export const getStep = async (step: string) => {};
 
 export const getSteps = async () => {
-  let data;
-  try {
-    const response = await axios("http://localhost:3000/steps");
-    if (response.status === 200) {
-      data = await response.json();
-    } else {
-      data = fakeData;
-    }
-  } catch {
-    data = fakeData;
-  }
-
-  return data;
-};
-
-export const getStepTitle: () => Promise<IStepTitle[]> = async () => {
-  // try {
-  // const response = await fetch("http://localhost:3000/steps");
-  // if (response.status === 200) {
-  // data = await response.json();
-  // } else {
-  const data = fakeData.steps.map((step) => ({
-    title: step.title,
-    id: step.id,
-  }));
-  // }
-  // } catch {
-  // data = fakeData;
-  // }
-
-  return data;
+  const response = await axios(`${baseURL}steps`);
+  return response.data;
 };
 
 export const PostLoginUser: (
