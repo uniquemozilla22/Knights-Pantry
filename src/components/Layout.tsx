@@ -30,9 +30,8 @@ export const Layout: React.FC<IProps> = ({ children }) => {
     return (
       <LoaderContextProvider>
         <AdminLayout>
-          <Sidebar />
           <Toaster />
-          {children}
+          <Sidebar>{children}</Sidebar>
         </AdminLayout>
       </LoaderContextProvider>
     );
@@ -42,7 +41,6 @@ export const Layout: React.FC<IProps> = ({ children }) => {
     return (
       <>
         <LoaderContextProvider>
-          {console.log("called")}
           <Toaster />
           {children}
         </LoaderContextProvider>
@@ -67,19 +65,12 @@ export const Layout: React.FC<IProps> = ({ children }) => {
 };
 
 const AdminLayout = ({ children }) => {
-  const { state } = useLocation();
-  const { token, isLoggedIn } = useAuth();
-
-  console.log(!isLoggedIn(), token, "Login status");
-
-  console.log("admin");
-  console.log(state, isLoggedIn(), "Logged IN");
-
+  const { isLoggedIn } = useAuth();
   if (!isLoggedIn()) {
     return (
       <Navigate to={"/?message=You must be logged in to access this page"} />
     );
   }
 
-  return children;
+  return <>{children}</>;
 };

@@ -1,6 +1,9 @@
 import UserAvatar from "../UserAvatar";
 
-const Sidebar = () => {
+interface IProps {
+  children: any;
+}
+const Sidebar: React.FC<IProps> = (props) => {
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -31,18 +34,12 @@ const Sidebar = () => {
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal">
               <li>
-                <a>Manage Steps</a>
-              </li>
-              <li>
-                <a>Manage Admin Access</a>
-              </li>
-              <li>
                 <UserAvatar username="Melanie" />
               </li>
             </ul>
           </div>
         </div>
-        Content
+        <div className="p-5">{props.children}</div>
       </div>
       <div className="drawer-side ">
         <label

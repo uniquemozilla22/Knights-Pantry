@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { LoaderContext } from "../context/LoaderContext";
+import toast from "react-hot-toast";
 
 const useLoading = () => {
   const { loading, createLoading, removeLoading } = useContext(LoaderContext);
@@ -11,8 +12,9 @@ const useLoading = () => {
     createLoading("USER/LOGIN");
     try {
       await callback();
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      removeLoading("USER/LOGIN");
+      toast.error(`Error ${error.response.status} ! ${error.response.message}`);
     }
     removeLoading("USER/LOGIN");
   };

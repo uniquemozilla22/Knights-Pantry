@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { StepContext } from "../context/StepContext";
 import { useNavigate } from "react-router-dom";
-import { getStep, getStepTitle, getSteps } from "../api";
+import { getStep, getSteps } from "../api";
 import { IStepData, IStepTitle } from "../type";
 import useLoading from "./useLoading";
 
@@ -33,18 +33,13 @@ const useStep = (id?: string) => {
     setStep({ ...data.data });
   };
 
-  const fetchStepTitle = async () => {
-    const data: IStepTitle[] = await getStepTitle();
-    setTitles(data);
-  };
-
   const restartSteps = () => {
     restartStep();
     setTimeout(() => navigation(`/step/${active}`), 1000);
   };
 
   useEffect(() => {
-    fetchStepTitle();
+    // fetchStepTitle();
     if (id) {
       fetchStep(id);
     }

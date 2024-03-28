@@ -1,9 +1,12 @@
+import { Route, Routes } from "react-router-dom";
 import { Admin } from "./Admin";
 
 const Dashboard = () => {
   return (
     <>
-      <Admin />
+      <Routes>
+        <Route path="/" element={<Admin />} />
+      </Routes>
     </>
   );
 };

@@ -5,12 +5,10 @@ import { AuthContext } from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AxiosResponse } from "axios";
 import { responseCheckForError } from "../utils/addons";
-import { LoaderContext } from "../context/LoaderContext";
 import useLoading from "./useLoading";
 
 const useAuth = () => {
   const { token, setToken } = useContext(AuthContext);
-
   const { withUserLoginLoading } = useLoading();
   const navigate = useNavigate();
   const { state } = useLocation();
